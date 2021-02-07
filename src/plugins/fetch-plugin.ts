@@ -38,11 +38,16 @@ export const fetchPlugin = (inputCode: string) => {
         // path 가 css파일이면 fileType을 css로, 아니면 jsx로 설정
         const fileType = args.path.match(/.css$/) ? 'css' : 'jsx';
 
+        const escaped = data
+          .replace(/\n/g, '')
+          .replace(/"/g, '\\"')
+          .replace(/'/g, "\\'");
+
         const contents =
           fileType === 'css'
             ? `
           const style = document.createElement('style');
-          style.innerText = 'body { background-color: "red" }';
+          style.innerText = '${escaped}';
           document.head.appendChild(style);
         `
             : data;
