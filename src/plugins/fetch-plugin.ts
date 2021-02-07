@@ -35,11 +35,24 @@ export const fetchPlugin = (inputCode: string) => {
 
         const { data, request } = await axios.get(args.path);
 
+        // path 가 css파일이면 fileType을 css로, 아니면 jsx로 설정
+        const fileType = args.path.match(/.css$/) ? 'css' : 'jsx';
+
+        const contents =
+          fileType === 'css'
+            ? `
+          const style = document.createElement('style');
+          style.innerText = 'body { background-color: "red" }';
+          document.head.appendChild(style);
+        `
+            : data;
+
         const result: esbuild.OnLoadResult = {
           loader: 'jsx',
-          contents: data,
+          contents,
           resolveDir: new URL('./', request.responseURL).pathname,
         };
+
         // store response in cache
         // 캐시에 응답을 저장
         await fileCache.setItem(args.path, result);
