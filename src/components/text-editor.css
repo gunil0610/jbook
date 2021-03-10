@@ -6,6 +6,21 @@
   color: #d4d4d4 !important;
 }
 
+.text-editor .token.tag {
+  line-height: unset;
+  font-size: unset;
+  font-weight: unset;
+  background: unset;
+  height: unset;
+  width: unset;
+  padding: unset;
+  color: #d4d4d4 !important;
+}
+
+.text-editor .token.tag .token.punctuation {
+  color: #d4d4d4 !important;
+}
+
 .w-md-editor ul {
   line-height: 1;
 }
