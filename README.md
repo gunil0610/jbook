@@ -1,3 +1,3 @@
 # JBook
 
-Building project with react and typescript
+Building browser-based code/markdown-editor project with react and typescript
